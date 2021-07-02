@@ -3,6 +3,7 @@ package rg.generation.Ajudai.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,12 +41,14 @@ public class UsuarioController {
 
 	@PostMapping
 	public ResponseEntity<Usuario> Post(@RequestBody Usuario usuario) {
-		return ResponseEntity.ok(repository.save(usuario));
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(repository.save(usuario));
 	}
 	
 	@PutMapping
 	public ResponseEntity<Usuario> Put(@RequestBody Usuario usuario){
-	return ResponseEntity.ok(repository.save(usuario));
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(repository.save(usuario));
 	}
 	
 	@DeleteMapping("/{id}")
